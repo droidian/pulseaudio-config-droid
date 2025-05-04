@@ -1,3 +1,4 @@
 /usr/lib/pulseaudio-config-droid
 /etc/pulse
 /etc/systemd/user/pulseaudio.service.d
+/usr/lib/udev/rules.d/

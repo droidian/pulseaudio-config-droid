@@ -48,6 +48,13 @@ load-module module-droid-card rate=48000 voice_virtual_stream=true
 load-module module-droid-hidl
 .endif
 
+### Auto detect new USB devices
+.ifexists module-udev-detect.so
+  load-module module-udev-detect
+.else
+  load-module module-detect
+.endif
+
 ### Automatically load the trust-store module
 .ifexists module-trust-store.so
 load-module module-trust-store

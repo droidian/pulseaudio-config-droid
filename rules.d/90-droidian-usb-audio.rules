@@ -1,0 +1,8 @@
+# Copyright (C) 2025 Eugenio Paolantonio <eugenio@droidian.org>
+
+# Mark non-usb audio devices as ignored
+SUBSYSTEM=="sound", IMPORT{builtin}="path_id", ENV{ID_PATH}!="*-usb-*", ENV{PULSE_IGNORE}="1"
+
+# Forcibly set alsa volume on newly added USB devices
+ACTION=="add", SUBSYSTEM=="sound", IMPORT{builtin}="path_id", ENV{ID_PATH}=="*-usb-*", \
+  ENV{DEVNAME}=="*controlC*", RUN+="/bin/bash -c 'sleep 1; amixer -c ${DEVNAME#*controlC} set PCM 100% unmute'"
